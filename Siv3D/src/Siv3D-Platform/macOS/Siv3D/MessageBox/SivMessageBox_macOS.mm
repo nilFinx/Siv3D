@@ -26,11 +26,11 @@ namespace s3d
 			[alert setInformativeText:[NSString stringWithCString:textS.c_str() encoding:NSUTF8StringEncoding]];
 			
 			const NSAlertStyle styles[] = {
-				NSAlertStyleInformational,
-				NSAlertStyleInformational,
-				NSAlertStyleWarning,
-				NSAlertStyleCritical,
-				NSAlertStyleInformational,
+				NSInformationalAlertStyle,
+				NSInformationalAlertStyle,
+				NSWarningAlertStyle,
+				NSCriticalAlertStyle,
+				NSInformationalAlertStyle,
 			};
 			[alert setAlertStyle: styles[FromEnum(style)]];
 			

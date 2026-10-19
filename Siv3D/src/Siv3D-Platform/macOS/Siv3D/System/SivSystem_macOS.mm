@@ -190,7 +190,7 @@ namespace s3d
 		{
 			@autoreleasepool
 			{
-				NSArray<NSString*>* preferredLanguages = [NSLocale preferredLanguages];
+				NSArray* preferredLanguages = [NSLocale preferredLanguages];
 				
 				if (0 < preferredLanguages.count)
 				{

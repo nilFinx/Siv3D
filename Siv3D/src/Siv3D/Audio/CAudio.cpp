@@ -18,6 +18,7 @@
 # include <Siv3D/AudioDecoder.hpp>
 # include <Siv3D/KlattTTSParameters.hpp>
 # include <Siv3D/DLL.hpp>
+# include <Siv3D/FormatInt.hpp>
 # include "CAudio.hpp"
 
 namespace s3d
@@ -79,17 +80,15 @@ namespace s3d
 		{
 			m_soloud = std::make_unique<SoLoud::Soloud>();
 
-		# if SIV3D_PLATFORM(WEB)
-			if (SoLoud::SO_NO_ERROR != m_soloud->init(SoLoud::Soloud::CLIP_ROUNDOFF, SoLoud::Soloud::AUTO, SoLoud::Soloud::AUTO, 4096))
-			{
-				throw EngineError{ U"Failed to initialize audio engine" };
-			}
-		# else
-			if (SoLoud::SO_NO_ERROR != m_soloud->init())
-			{
-				throw EngineError{ U"Failed to initialize audio engine" };
-			}
-		# endif
+			# if SIV3D_PLATFORM(WEB)
+            auto err = m_soloud->init(SoLoud::Soloud::CLIP_ROUNDOFF, SoLoud::Soloud::AUTO, SoLoud::Soloud::AUTO, 4096);
+			# else
+            auto err = m_soloud->init();
+			# endif
+            if (SoLoud::SO_NO_ERROR != err)
+            {
+                throw EngineError{ U"Failed to initialize audio engine: " + s3d::ToString(err) };
+            }
 
 			LOG_INFO(U"🎧 Audio backend: {0} (channel count: {1}, sample rate: {2}, buffer size: {3})"_fmt(
 				Unicode::Widen(m_soloud->getBackendString()),

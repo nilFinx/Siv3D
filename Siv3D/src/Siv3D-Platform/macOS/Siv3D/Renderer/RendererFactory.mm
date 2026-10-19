@@ -12,7 +12,7 @@
 # include <Siv3D/EngineOptions.hpp>
 # include <Siv3D/Renderer/Null/CRenderer_Null.hpp>
 # include <Siv3D/Renderer/GL4/CRenderer_GL4.hpp>
-# include <Siv3D/Renderer/Metal/CRenderer_Metal.hpp>
+//TODO# include <Siv3D/Renderer/Metal/CRenderer_Metal.hpp>
 
 namespace s3d
 {
@@ -23,10 +23,10 @@ namespace s3d
 		{
 			return new CRenderer_GL4;
 		}
-		else if (g_engineOptions.renderer == EngineOption::Renderer::Metal)
+		/*TODOelse if (g_engineOptions.renderer == EngineOption::Renderer::Metal)
 		{
 			return new CRenderer_Metal;
-		}
+		}*/
 		else
 		{
 			return new CRenderer_Null;

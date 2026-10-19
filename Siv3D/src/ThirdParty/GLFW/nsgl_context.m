@@ -197,7 +197,7 @@ GLFWbool _glfwCreateContextNSGL(_GLFWwindow* window,
 
     NSOpenGLPixelFormatAttribute attribs[40];
     int index = 0;
-
+    
     addAttrib(NSOpenGLPFAAccelerated);
     addAttrib(NSOpenGLPFAClosestPolicy);
 
@@ -210,7 +210,7 @@ GLFWbool _glfwCreateContextNSGL(_GLFWwindow* window,
         //       a straightforward wrapper of its CGL counterpart
         addAttrib(kCGLPFASupportsAutomaticGraphicsSwitching);
     }
-
+    
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= 101000
     if (ctxconfig->major >= 4)
     {
@@ -222,8 +222,7 @@ GLFWbool _glfwCreateContextNSGL(_GLFWwindow* window,
     {
         setAttrib(NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion3_2Core);
     }
-
-    if (ctxconfig->major <= 2)
+	else
     {
         if (fbconfig->auxBuffers != GLFW_DONT_CARE)
             setAttrib(NSOpenGLPFAAuxBuffers, fbconfig->auxBuffers);
@@ -241,7 +240,6 @@ GLFWbool _glfwCreateContextNSGL(_GLFWwindow* window,
             setAttrib(NSOpenGLPFAAccumSize, accumBits);
         }
     }
-
     if (fbconfig->redBits != GLFW_DONT_CARE &&
         fbconfig->greenBits != GLFW_DONT_CARE &&
         fbconfig->blueBits != GLFW_DONT_CARE)
